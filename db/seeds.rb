@@ -1,6 +1,7 @@
-User.create!(
+Movie.create!(
     [
       {
+        id: 1,
         name: 'ジョーズ',
         year: '2023',
         description: '映画だよ',
@@ -9,6 +10,7 @@ User.create!(
 
       },
       {
+        id: 2,
         name: 'ミルク',
         year: '2022',
         description: '映画だよ',

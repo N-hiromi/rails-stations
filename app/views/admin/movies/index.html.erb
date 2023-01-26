@@ -22,7 +22,14 @@
         <td><%= movie.description %></td>
         <td><%= link_to movie.image_url, class: "movie-image"  %></td>
         <%# <%= image_tag movie.image_url, class: "movie-image"  %> %>
-        <td><%= movie.is_showing %></td>
+        
+        <% if movie.is_showing %>
+        <td>上映中</td>
+        <% end %>
+        <% if !movie.is_showing %>
+        <td>上映予定</td>
+        <% end %>
+       
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
       </tr>
