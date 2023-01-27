@@ -7,7 +7,7 @@ class Admin::MoviesController < ApplicationController
     @movie = Movie.new
   end
 
-  def show
+  def edit
     @movie = Movie.find(params[:id])
   end
 
