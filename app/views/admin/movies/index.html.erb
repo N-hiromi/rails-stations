@@ -16,7 +16,9 @@
     <tbody>
       <% @movies.each do |movie|%>
       <tr>
+        <%= link_to("/movies/#{movie.id}") do %>
         <td><%= movie.id %></td>
+        <% end %>
         <td><%= movie.name %></td>
         <td><%= movie.year %></td>
         <td><%= movie.description %></td>
