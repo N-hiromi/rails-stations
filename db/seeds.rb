@@ -1,8 +1,7 @@
 Movie.create!(
     [
       {
-        id: 1,
-        name: 'ジョーズ',
+        name: 'ジョーズda',
         year: '2023',
         description: '映画だよ',
         image_url: 'https://picsum.photos/200',
@@ -10,8 +9,7 @@ Movie.create!(
 
       },
       {
-        id: 2,
-        name: 'ミルク',
+        name: 'ababa',
         year: '2022',
         description: '映画だよ',
         image_url: 'https://picsum.photos/200',
