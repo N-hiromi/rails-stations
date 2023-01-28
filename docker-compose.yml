@@ -16,6 +16,8 @@ services:
       - rails-railway-stations-volume:/var/lib/mysql
 
   web:
+    # stdin_open: true
+    # tty: true
     build:
       context: .
       dockerfile: ./infra/web/Dockerfile

@@ -4,14 +4,14 @@
     <%= message %>
   <% end %>
 
-  <%= search_form_for @q, url: "/movies" do |f| %>
-    <%= f.search_field :name_or_description_cont, placeholder: '検索ワード' %>
+  <%= form_with url: "/movies", method: :get do |f| %>
+    <%= f.search_field :keyword, placeholder: '検索ワード' %>
     <div class="radio-form">
-      <%= f.radio_button :is_showing_eq, "nill", {:checked => true} %>
+      <%= f.radio_button :is_showing, "", {:checked => true} %>
       <%= f.label :is_showing, "全て" %>
-      <%= f.radio_button :is_showing_eq, true %>
+      <%= f.radio_button :is_showing, "1" %>
       <%= f.label :is_showing, "上映中" %>
-      <%= f.radio_button :is_showing_eq, false %>
+      <%= f.radio_button :is_showing, "0" %>
       <%= f.label :is_showing, "公開予定" %>
     </div>
     <%= f.submit '検索', class: 'btn btn-primary' %>
@@ -32,6 +32,7 @@
       </tr>
     </thead>
     <tbody>
+    <% if @movies %>
       <% @movies.each do |movie|%>
       <tr>
         <td><%= movie.id %></td>
@@ -44,6 +45,7 @@
         <td><%= movie.updated_at %></td>
       </tr>
       <% end %>
+    <% end %>
     </tbody>
 </table>
 
