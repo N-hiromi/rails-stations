@@ -23,4 +23,9 @@ class MoviesController < ApplicationController
 			@movies = @range.where( "name LIKE ? OR description LIKE ? ", "%#{@keyp}%", "%#{@keyp}%")
 		end
 	end
+
+	def show
+		@movie = Movie.find(params[:id])
+		@schedules = @movie.schedules.all
+	end
 end
