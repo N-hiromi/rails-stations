@@ -1,8 +1,5 @@
 class MoviesController < ApplicationController
 	def index		
-		# @q = Movie.ransack(params[:q])
-		# @rangeは全てか上映中か上映予定か絞ったMovie配列
-		# @range = @q.result(distinct: true).order("created_at desc")
 		@rgp = params[:is_showing]
 		@keyp = params[:keyword]
 		
