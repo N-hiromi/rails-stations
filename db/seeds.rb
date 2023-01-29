@@ -101,12 +101,12 @@ Movie.all.each do |movie|
 	movie.schedules.create!(
 		[
 			{
-				start_time: "2022-01-01",
-				end_time: "2022-02-01"
+				start_time: "10:30:00",
+				end_time: "13:00:00"
 			},
 			{
-				start_time: "2023-01-01",
-				end_time: "2023-02-01"
+				start_time: "11:30:00",
+				end_time: "14:00:00"
 			}
 		]
 	)

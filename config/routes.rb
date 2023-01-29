@@ -10,6 +10,13 @@ Rails.application.routes.draw do
     get '/movies/:id/schedules/new', to: "schedules#new"
   end
   get "/movies", to: "movies#index"
-  resources :movies, only: [:show, :update, :destroy]
   get "/sheets", to: "sheets#index"
+
+  resources :reservations, only: [:create, :update, :destroy]
+  resources :movies do
+    member do
+      get 'reservation'
+    end 
+  end
+  get '/movies/:movie_id/schedules/:schedule_id/reservations/new', to: "reservations#new"
 end

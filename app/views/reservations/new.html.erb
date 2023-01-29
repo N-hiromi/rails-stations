@@ -1,0 +1,30 @@
+<div class="form">
+    <h2>座席予約フォーム</h2>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+    <h2>映画作品: <%= Movie.find(params[:movie_id]).name %></h2>
+    <p>上映開始日時 <%= params[:date] + Schedule.find(params[:schedule_id]).start_time.strftime( "%H:%M" ) %></p> %>
+    <p>座席番号: <%= Sheet.find(params[:sheet_id]).column %><%= Sheet.find(params[:sheet_id]).row %></p> 
+    
+
+      <%= form_with model: @reservation, method: :post do |f| %>
+        <div class="form-group">
+          <label>予約者氏名</label>
+            <%= f.text_field:name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>予約者メールアドレス</label>
+            <%= f.email_field:email, class: "form-control" %>
+        </div>
+        <%# hiddenパラメータで渡す %>
+        <%= f.hidden_field :schedule_id, value: params[:schedule_id] %>
+        <%= f.hidden_field :sheet_id, value: params[:sheet_id] %>
+        <%= f.hidden_field :date, value: params[:date] %>
+        <div class="form-group">
+          <%= f.submit "予約を確定する", class: "btn btn-primary float-end mt-3" %>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+  </div>
+</div>

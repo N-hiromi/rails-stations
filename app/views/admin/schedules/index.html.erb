@@ -18,8 +18,8 @@
       <tbody>
         <% @schedules.each do |schedule|%>
         <tr>
-          <td><%= schedule.start_time %></td>
-          <td><%= schedule.end_time %></td>
+          <td><%= schedule.start_time.strftime( "%H:%M" ) %></td>
+          <td><%= schedule.end_time.strftime( "%H:%M" ) %></td>
           <td><%= link_to "詳細", "/admin/schedules/#{schedule.id}" %></td>
           <td><%= button_to '削除', "/admin/schedules/#{schedule.id}", method: :delete , data: { confirm: "Are you sure?" }%></td>
         </tr>

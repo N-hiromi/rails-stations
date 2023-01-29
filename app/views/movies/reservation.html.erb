@@ -1,0 +1,20 @@
+<table>
+  <thead>
+      <tr>
+        <th>id</th>
+        <th>column</th>
+        <th>row</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sheets.each do |sheet|%>
+      <tr>
+        <%# <td><%= link_to sheet.id, "/movies/#{params[:movie_id]}/schedules/#{sheet.id}/reservations/new(schedule_id: #{params[:schedule_id]})" %></td> %>
+        <td><%= link_to sheet.id, controller: :reservations, action: :new, movie_id: params[:movie_id], sheet_id: sheet.id, date: params[:date], schedule_id: params[:schedule_id]  %></td>
+        <td><%= sheet.column %></td>
+        <td><%= sheet.row %></td>
+      </tr>
+      <% end %>
+    </tbody>
+</table>
+<%= params[:schedule_id] %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_28_224544) do
+ActiveRecord::Schema.define(version: 2023_01_29_061232) do
 
   create_table "movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 160, null: false, comment: "映画のタイトル。邦題・洋題は一旦考えなくてOK"
@@ -23,10 +23,20 @@ ActiveRecord::Schema.define(version: 2023_01_28_224544) do
     t.index ["name"], name: "index_movies_on_name"
   end
 
+  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "schedule_id", null: false
+    t.integer "sheet_id", null: false
+    t.date "date", null: false
+    t.string "name", null: false
+    t.string "email", limit: 50, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "movie_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time "start_time"
+    t.time "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
