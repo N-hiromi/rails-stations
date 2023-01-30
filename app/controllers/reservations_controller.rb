@@ -6,10 +6,8 @@ class ReservationsController < ApplicationController
 		schedule_id = params[:schedule_id]
 		movie_id = Schedule.find(schedule_id).movie_id
 
-		if date == nil && sheet == nil
-			# render status:302
-			# redirect_to :reservation_movie_path
-			redirect_to("/movies/#{movie_id}/reservation")
+		if date.blank? && sheet_id.blank?
+			redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
 		end
 	end
 
@@ -21,21 +19,19 @@ class ReservationsController < ApplicationController
 		movie_id = Schedule.find(schedule_id).movie_id
 		sheet_id = reservation_params[:sheet_id]
 		date = reservation_params[:date]
-				
 		# 同じ日付で同じ映画、同じ席が取られていないか確認
 		dup = Reservation.where( "schedule_id LIKE ? OR sheet_id LIKE ? ", "#{schedule_id}", "%#{sheet_id}%")
-		if dup = nil
+		if dup.blank?
 			if @reservation.save
 				flash[:success] = "予約が完了しました"
 				redirect_to controller: :movies, action: :show, id: movie_id
 			else
 				flash[:danger] = "登録失敗"
-				redirect_to action: :new, schedule_id: schedule_id, movie_id: movie_id, sheet_id: sheet_id, date: date
+				redirect_to action: :new, schedule_id: schedule_id, id: movie_id, sheet_id: sheet_id, date: date
 			end
 		else
-			# render {"status":302}
 			flash[:danger] = "その座席はすでに予約済みです"
-			redirect_to("/movies/#{movie_id}/reservation?schedule_id=#{schedule_id}&date=#{date}&movie_id=#{movie_id}")
+			redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id, date: date
 		end
 
   end
