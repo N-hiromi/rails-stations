@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
 		schedule_id = params[:schedule_id]
 		movie_id = Schedule.find(schedule_id).movie_id
 
-		if date.blank? && sheet_id.blank?
+		if date.blank? || sheet_id.blank?
 			redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
 		end
 	end
