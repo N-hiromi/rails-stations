@@ -35,8 +35,7 @@ class ReservationsController < ApplicationController
 		else
 			# render {"status":302}
 			flash[:danger] = "その座席はすでに予約済みです"
-			# redirect_to :movie_reservation_path, schedule_id: schedule_id, date: date
-			redirect_to("/movies/#{movie_id}/reservation?schedule_id=#{schedule_id}&date=#{date}")
+			redirect_to("/movies/#{movie_id}/reservation?schedule_id=#{schedule_id}&date=#{date}&movie_id=#{movie_id}")
 		end
 
   end

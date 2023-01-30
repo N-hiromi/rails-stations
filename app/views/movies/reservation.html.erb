@@ -1,3 +1,6 @@
+<% flash.each do |message_type, message| %>
+  <%= message %>
+<% end %>
 <table>
   <thead>
       <tr>
@@ -9,7 +12,7 @@
     <tbody>
       <% @sheets.each do |sheet|%>
       <tr>
-        <td><%= link_to sheet.id, ("/movies/#{params[:movie_id]}/schedules/#{sheet.id}/reservations/new")  %></td>
+        <td><%= link_to sheet.id, ("/movies/#{params[:movie_id]}/schedules/#{params[:schedule_id]}/reservations/new?sheet_id=#{sheet.id}&date=#{params[:date]}")  %></td>
         <td><%= sheet.column %></td>
         <td><%= sheet.row %></td>
       </tr>
