@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
 		movie_id = Schedule.find(schedule_id).movie_id
 		sheet_id = reservation_params[:sheet_id]
 		date = reservation_params[:date]
+
 		# 同じ日付で同じ映画、同じ席が取られていないか確認
 		dup = Reservation.where( "schedule_id LIKE ? OR sheet_id LIKE ? ", "#{schedule_id}", "%#{sheet_id}%")
 		if dup.blank?
@@ -27,7 +28,7 @@ class ReservationsController < ApplicationController
 				redirect_to controller: :movies, action: :show, id: movie_id
 			else
 				flash[:danger] = "登録失敗"
-				redirect_to action: :new, schedule_id: schedule_id, id: movie_id, sheet_id: sheet_id, date: date
+				redirect_to controller: :reservations, action: :new, schedule_id: schedule_id, movie_id: movie_id, sheet_id: sheet_id, date: date
 			end
 		else
 			flash[:danger] = "その座席はすでに予約済みです"
