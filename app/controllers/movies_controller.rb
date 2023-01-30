@@ -45,6 +45,10 @@ class MoviesController < ApplicationController
 		schedule_id = params[:schedule_id]
 		date = params[:date]
 		movie_id = params[:movie_id]
+
+		# 予約ずみの箇所を検索
+		@dup = Reservation.where( "schedule_id LIKE ? AND date LIKE ? ", "%#{schedule_id}%", "%#{date}%").select("sheet_id")
+		
 		if schedule_id.blank? || date.blank?
 			# redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
 			redirect_to controller: :movies, action: :show, movie_id: movie_id, status: 302
