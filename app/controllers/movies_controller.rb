@@ -46,7 +46,8 @@ class MoviesController < ApplicationController
 		date = params[:date]
 		movie_id = Schedule.find(schedule_id).movie_id
 		if schedule_id.blank? || date.blank?
-			redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
+			# redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
+			redirect_to controller: :movies, action: :show, movie_id: movie_id
 		end
 	end
 end
