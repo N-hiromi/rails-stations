@@ -69,7 +69,8 @@
         </div>
         <%= f.hidden_field :movie_id, value: params[:id] %>
         <div class="form-group">
-          <%= f.submit "座席を予約する", class: "btn btn-primary float-end mt-3" %>
+          <button type="submit" name="button">座席を予約する</button>
+          <%# <%= f.submit "座席を予約する", class: "btn btn-primary float-end mt-3" %> %>
           <div class="clear"></div>
         </div>
       <% end %>

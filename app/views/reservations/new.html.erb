@@ -6,8 +6,6 @@
     <h2>映画作品: <%= Movie.find(params[:movie_id]).name %></h2>
     <p>上映開始日時 <%= params[:date] + Schedule.find(params[:schedule_id]).start_time.strftime( "%H:%M" ) %></p> %>
     <p>座席番号: <%= Sheet.find(params[:sheet_id]).column %><%= Sheet.find(params[:sheet_id]).row %></p> 
-    
-
       <%= form_with model: @reservation, method: :post do |f| %>
         <div class="form-group">
           <label>予約者氏名</label>
