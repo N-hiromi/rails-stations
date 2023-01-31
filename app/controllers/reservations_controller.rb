@@ -21,17 +21,17 @@ class ReservationsController < ApplicationController
 		date = reservation_params[:date]
 
 		# 同じ日付で同じ映画、同じ席が取られていないか確認
-		dup = Reservation.where( "schedule_id LIKE ? OR sheet_id LIKE ? ", "#{schedule_id}", "%#{sheet_id}%")
+		dup = Reservation.where(schedule_id: schedule_id, sheet_id: sheet_id)
 		if dup.blank?
 			if @reservation.save
 				flash[:success] = "予約が完了しました"
 				redirect_to controller: :movies, action: :show, id: movie_id
 			else
-				flash[:danger] = "登録失敗"
+				flash[:alert] = "登録失敗"
 				redirect_to controller: :reservations, action: :new, schedule_id: schedule_id, movie_id: movie_id, sheet_id: sheet_id, date: date
 			end
 		else
-			flash[:danger] = "その座席はすでに予約済みです"
+			flash[:alert] = "その座席はすでに予約済みです"
 			redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id, date: date
 		end
 

@@ -46,8 +46,8 @@ class MoviesController < ApplicationController
 		date = params[:date]
 		movie_id = params[:movie_id]
 
-		# 予約ずみの箇所を検索
-		@dup = Reservation.where( "schedule_id LIKE ? AND date LIKE ? ", "%#{schedule_id}%", "%#{date}%").select("sheet_id")
+		# 予約ずみのシート配列。同じ日付、同じschedule_idのレコードのうち、scheet_idのみを抽出した配列
+		@dup = Reservation.where(schedule_id: schedule_id, date: date).pluck(:sheet_id)
 		
 		if schedule_id.blank? || date.blank?
 			# redirect_to controller: :movies, action: :reservation, id: movie_id, schedule_id: schedule_id
